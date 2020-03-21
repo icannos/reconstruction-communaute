@@ -1,0 +1,78 @@
+\documentclass[fleqn,11pt, french]{article}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper, scale=0.78]{geometry}
+\usepackage[francais]{babel}
+\usepackage{subfiles}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{pbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subcaption}
+
+\usepackage{pdfpages}
+
+\usepackage{tikz}
+
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+\usepackage{graphicx}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\input{macros}
+\input{macros_graph}
+
+
+\title{Reconstruction de communauté}
+\author{Maxime \textsc{Darrin}}
+
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+
+	\newpage
+	
+	\section*{Notations}
+	
+	\subfile{notations.tex}
+	
+	\newpage
+	\section{Introduction}
+	\subfile{introduction.tex}
+	
+	\section{Solution du problème de reconstruction exacte}
+	
+	\subfile{solution.tex}
+	
+	\section{Problème de la bissection minimale}
+	
+	\subfile{bissectmin.tex}
+	
+	\section{Pour aller plus loin}
+	
+	Nous avons vu jusqu'ici que si trouver la bissection minimale permettait de reconstruire de manière exacte les communautés, ce problème est intractable dès que les graphes considérés deviennent grands. Il existe d'autreS méthodes probabilistes permettant de résoudre le problème avec différentes garanties. L'article de Dyier et Frieze\cite{dyier} propose d'abord un algorithme permettant d'obtenir la coupe minimale de manière sûre mais qui s'exécute en temps polynomial en espérance puis un algorithme polynomial (en $\Orond(N^3)$) -- vu en cours --  sous certaines conditions. D'autres solutions consistent à travailler sur des problèmes affaiblies de reconstruction non exacte comme vu en cours. 
+	
+	De manière plus générale, on cherche à contourner la complexité des problèmes $\NPHARD$ en utilisant des algorithmes probabilistes de type \emph{Monte-Carlo} (termine en temps déterministe mais la sortie est probabiliste) ou \emph{Atlantic city} (tourne en temps probabiliste, on précise l'espérance du temps de calcul mais donne toujours un résultat correct), ou encore en ayant recours à des algorithmes approximations dont la sortie est garantie être proche de l'optimum.
+	
+	Dans le cas du problème \textit{MIN-BISSECTION} général (c'est à dire avec des arêtes pondérées et on cherche la bissection qui minimise le flot entre les deux parties), on peut en fait montrer que ce problème n'est même pas approximable en temps raisonnable à moins que $\PP = \NP$\cite{noapprox}.
+	
+	Plus précisément, on dit qu'un problème est approximable en temps polynomial, s'il existe un algorithme, tel que pour tout $\epsilon$, cet algorithme retourne une solution optimale à un facteur $1+\epsilon$ près en temps polynomial. Dans notre cas, si une bissection minimale à un coût de $C$, une $\epsilon$-approximation de ce problème est un algorithme retournant un résultat $R$ tel que $C \leq R \leq C(1+\epsilon)$. Et donc, pour cette définition, le problème \textit{MIN-BISSECTION} n'est pas approximable -- sauf si $\PP = \NP$. On montre en fait que, s'il existe une telle approximation, on peut l'utiliser pour résoudre un problème connu pour être $\NPCOMPLETE$ par réduction entre problèmes.
+	
+	Par ailleurs, on peut simplifier le problème en relâchant les contraintes en cherchant non plus à reconstruire les communautés de manière exacte mais en autorisant des erreurs dans le cadre de la reconstruction faible vue en cours.
+	
+	\newpage
+	
+	\bibliographystyle{plain}
+	\bibliography{biblio.bib}
+	
+
+\end{document}
