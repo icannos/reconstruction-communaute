@@ -126,6 +126,8 @@ Dans ce cas, il est facile de vérifier si l'on a une bissection-candidate $A:B$
 La preuve permettant de montrer que \textit{min-bissection} est $\NPHARD$ se fait grâce à 3 réductions remontant au problème \textit{3-SAT} qui est $NP-complet$ car c'est l'un des 21 problèmes de Karp \cite{21karp}. Nous allons montrer successivement:
 \[ \text{\textit{3-SAT}} \leq_P \text{\textit{MAX-2SAT}} \leq_P \text{\textit{SIMPLE-MAX-CUT}} \leq_P \text{\textit{SIMPLE-MIN-BISSECTION}} \]
 
+Les deux preuves principales sont le passage de \textit{3-SAT} à \textit{MAX-2SAT} et \textit{SIMPLE-MAX-CUT} à \textit{SIMPLE-MIN-BISSECTION}, la troisième preuve est plus fastidieuse et peut être omise sans nuire à la compréhension globale, il est néanmoins détaillée dans un souci d'exhaustivité.
+
 \begin{rem}
 	Ici nous montrons, en fait, que le problème \textit{MIN-BISSECTION-SIMPLE}, c'est à dire restreint aux graphes non pondérés reste $\NPHARD$. En effet, il est a priori moins général que \textit{MIN-BISSECTION} ie le même problème avec des graphes pondérés. On peut montrer, qu'ils sont en fait équivalent puisque tous deux sont dans $\NPCOMPLETE$ mais la réduction pour le problème générale se fait à partir du problème \textit{MAX-CUT} dans le cas général.
 \end{rem}
