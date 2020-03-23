@@ -4,23 +4,28 @@
 	\centering
 \begin{tabularx}{\textwidth}{|c|X|}
 	\hline
-	Notations & Descriptions \\
+	Notation & Description \\
 	\hline
-	$G \follows \Ger(N, p_A, p_B, p)$ & $G$ est un graphe aléatoire construit selon le modèle \ref{model}  \\
+	$G \follows \Ger(N, p_A, p_B, p)$ & $G$ est un graphe aléatoire construit selon le modèle \ref{model}.  \\
 	\hline
-	$A:B$ & Désigne une coupe ou une bissection d'un graphe dont $A$ et $B$ forment une partition des sommets \\
+	$A:B$ & Une coupe ou une bissection d'un graphe dont $A$ et $B$ forment une partition des sommets \\
 	\hline
-	$\card{A:B}$ & est le flot entre $A$ et $B$, c'est à dire le nombre d'arêtes entre $A$ et $B$ si le graphe n'est pas pondéré et la somme des capacités de arêtes si le graphe est pondéré. \\
+	$\card{A:B}$ & Le flot entre $A$ et $B$: la somme des capacités de arêtes dont une extrémité est dans $A$ et l'autre dans $B$. C'est le nombre d'arrêtes entre ces deux ensembles si le graphe n'est pas pondéré. \\
 		\hline
-	$\preceq$ & désigne la relation d'ordre sur les coupes ou les bissections telle que une coupe est plus petite qu'une autre si son flot est plus petit. \\
+	$A:B \preceq A':B'$ & la relation d'ordre sur les coupes ou les bissections telle que une coupe est plus petite qu'une autre si son flot est plus petit. \\
 		\hline
-	$\leq_P$ & désigne la relation d'ordre partielle entre les problèmes par réduction de Karp\cite{21karp}. \\
+	$A \leq_P B$ & La relation d'ordre partielle entre les problèmes par réduction de Karp\cite{21karp}. Lire: tous problèmes de $A$ se réduit à un problème de $B$. \\
 		\hline
-	$\NP, \PP$ & désignent respectivement les classes de complexité polynomiale déterministe et polynomiale non déterministe. \\
+	$\NP, \PP$ & Respectivement les classes de complexité polynomiale déterministe et polynomiale non déterministe. \\
 		\hline
-	$\NPHARD$ & désigne la classe des problèmes au moins aussi durs que tout problème de $\NP$ \\
+	$\NPHARD$ & La classe des problèmes au moins aussi durs que tout problème de $\NP$ \\
 		\hline
-	$\NPCOMPLETE$ & désigne la classe des problèmes de $\NP$ et au moins aussi durs que tous les problèmes de $\NP$, ie $\NPHARD$. \\
+	$\NPCOMPLETE$ & La classe des problèmes de $\NP$ et au moins aussi durs que tous les problèmes de $\NP$, ie $\NPHARD$. \\
+	\hline
+	$\Bin(N, p)$ & La loi binomiale de paramètres $(N,p)$. \\
+		\hline
+	$\top, \bot$ & Les valeurs booléennes "vrai" et "faux". 
+		\\
 		\hline
 \end{tabularx}
 

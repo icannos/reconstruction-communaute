@@ -2,11 +2,11 @@
 
 \begin{document}
 	
-Jusqu'ici nous avons essentiellement parlé du problème d'optimisation associé à la bissection minimale, c'est à dire trouver effectivement la bissection minimale. Nous verrons plus tard que ce problème est $\NPHARD$ mais qu'il n'est a priori pas dans $\NP$, c'est pourquoi nous allons étudier le problème de décision dans la suite. Tout d'abord, nous ferons des rappels concernant les classes de complexité de problèmes et nous définirons proprement $\PP$ et $\NP$, ensuite nous montrerons que le problème de décision -- et d'optimisation -- sont $\NPHARD$ et que le problème de décision appartient de plus à $\NP$ le rendant $\NPCOMPLETE$.
+Jusqu'ici nous avons essentiellement parlé du problème d'optimisation associé à la bissection minimale, c'est à dire trouver effectivement la bissection minimale. Nous verrons plus tard que ce problème est $\NPHARD$ mais qu'il n'est a priori pas dans $\NP$. C'est pourquoi nous allons étudier le problème de décision dans la suite. Tout d'abord, nous ferons des rappels concernant les classes de complexité de problèmes et nous définirons proprement $\PP$ et $\NP$, ensuite nous montrerons que le problème de décision -- et d'optimisation -- sont $\NPHARD$ et que le problème de décision appartient de plus à $\NP$ le rendant $\NPCOMPLETE$.
 
 \subsection{Complexité Algorithmique}
 
-On donne ici des définitions rapides des notions de complexité algorithmique, pour être absolument rigoureux et précis il serait nécessaire de donner des définitions formelles des machines de Turing, déterministes et non déterministes. Nous nous fonderons dans la suite sur la caractérisation par certificat de la classe $\NP$ et sur le théorème de \emph{Cook-Levin}\cite{cook}, et nous admettrons ces deux résultats.
+On donne ici des définitions rapides des notions de complexité algorithmique, pour être absolument rigoureux il serait nécessaire de donner des définitions formelles des machines de Turing, déterministes et non déterministes. Nous nous fonderons sur la caractérisation par certificat de la classe $\NP$ et sur le théorème de \emph{Cook-Levin}~\cite{cook}, et nous admettrons ces deux résultats.
 
 \subsubsection{Réductions de problèmes}
 \begin{defn}[Réduction de Karp]
@@ -18,7 +18,7 @@ On donne ici des définitions rapides des notions de complexité algorithmique, 
 	
 	Cette fonction vérifiant pour tout $\Irond_A$, $f(\Irond_A)$ a une solution équivaut à $\Irond_A$ a une solution.
 	
-	Si de plus $f$ est calculable en temps polynomial par un algorithme (ie par une machine de Turing déterministe) on dit alors que $f$ est une réduction polynomiale.
+	Si de plus $f$ est calculable en temps polynomial par un algorithme (\textit{ie} par une machine de Turing déterministe) on dit que $f$ est une réduction polynomiale.
 \end{defn}
 
 \begin{defn}[Relation d'ordre de complexité]
@@ -26,38 +26,38 @@ On donne ici des définitions rapides des notions de complexité algorithmique, 
 \end{defn}
 
 \begin{defn}[Problèmes équivalents]
-	Si on a $A \leq_P B$ et $B \leq_P A$, alors on dit que ces deux problèmes sont équivalents. On peut montrer que c'est effectivement une relation d'équivalence. Dans la suite nous étudierons l'ensemble des problèmes quotientés par cette relation d'équivalence et nous verrons que les problèmes $\NPCOMPLETE$ forment une de ces classes d'équivalence.
+	Si $A \leq_P B$ et $B \leq_P A$, alors ces deux problèmes sont équivalents. C'est effectivement une relation d'équivalence. Dans la suite nous étudierons l'ensemble des problèmes quotientés par cette relation d'équivalence et nous verrons que les problèmes $\NPCOMPLETE$ forment une de ces classes d'équivalence.
 \end{defn}
 
-Cela revient à dire que l'on peut transformer (rapidement) tout problème de type $A$ en un problème de type $B$ de sorte que cette transformation ait une solution si et seulement si le problème d'origine a une solution, ainsi il "suffit" de savoir résoudre les problèmes de $B$ pour résoudre les problèmes de $A$.
+Cela revient à dire que l'on peut transformer (rapidement) tout problème de type $A$ en un problème de type $B$ de sorte que cette transformation ait une solution si et seulement si le problème d'origine a une solution. Ainsi il "suffit" de savoir résoudre les problèmes de $B$ pour résoudre les problèmes de $A$.
 
 \subsubsection{$\PP$ et $\NP$}
 
 \begin{defn}[$\PP$: Déterministe polynomial]
-	La classe de problèmes déterministe polynomiale, notée $\PP$ correspond à l'ensemble des problèmes solubles par un algorithme (ie. une machine de Turing déterministe) en temps polynomial.
+	La classe de problèmes déterministe polynomiale, notée $\PP$, correspond à l'ensemble des problèmes solubles par un algorithme (ie. une machine de Turing déterministe) en temps polynomial.
 \end{defn}
 
 \begin{defn}[$\NP$: Non Déterministe polynomial]
-	Il existe deux définitions de cette classe, nous nous contenterons de la caractérisation par certificat.
-	
-	La classe de problèmes non déterministe polynomiale, notée $\NP$ correspond à l'ensemble des problèmes dont vérifier si une solution candidate -- un certificat -- est effectivement une solution ou non s'effectue en temps polynomial par un algorithme.
-	
-	Cette caractérisation est équivalente à la définition par les machine de Turing non déterministes de la classe $\NP$: la classe $\NP$ est l'ensemble des problèmes solubles en temps polynomial sur une machine de Turing non-déterministe. Néanmoins, par simplicité nous nous contenterons de la première dans la suite et nous admettrons que ces deux définitions sont équivalentes.
+	Il existe deux définitions de cette classe, nous nous contenterons de la caractérisation par certificat.	La classe de problèmes non déterministe polynomiale, notée $\NP$ correspond à l'ensemble des problèmes dont vérifier si une solution candidate -- un certificat -- est effectivement une solution ou non s'effectue en temps polynomial par un algorithme.
 \end{defn}
 
-\begin{exemple}[Quelques problèmes dans $\NP$]
+\begin{rem}
+		Cette caractérisation est équivalente à la définition par les machine de Turing non déterministes de la classe $\NP$: la classe $\NP$ est l'ensemble des problèmes solubles en temps polynomial sur une machine de Turing non-déterministe.
+\end{rem}
+
+
+\begin{exemple}
 	Soit $G=(V,E)$ un graphe, peut-on le colorier avec moins de $k$ couleurs ? Trouver tel coloriage est difficile, mais si on en a un, il est facile de vérifier qu'il comporte moins de $k$ couleurs et que 2 sommets adjacents n'ont jamais la même couleur.
-	
+\end{exemple}
+
+\begin{exemple}
 	Soient $W, V$, $v_1 \cdot v_n$, $w_1 \cdots w_n$ des entiers représentant un sac à dos pouvant contenir au maximum $W$ kilogrammes, et des objets de valeurs $v_i$ et de poids $w_i$. Puis-je remplir mon sac à dos de sorte que la somme des valeurs des objets dedans soit plus grande que $V$ et que la somme de leur poids plus petit que $W$. Il est difficile de remplir le sac, en revanche, si on dispose d'un sac rempli, on peut facilement vérifier s'il respecte les deux conditions.
 \end{exemple}
 
 \begin{defn}[Problèmes $\NPHARD$]
 	Un problème $A$ est dit $\NPHARD$ si:
-	\[\forall B \in \NP, B \leq_P A\].
-	
-	C'est à dire que $A$ est au moins aussi difficile que tous les problèmes dans $\NP$: il existe une réduction polynomiale permettant de se ramener à un problème de $A$ pour tous problèmes de $\NP$.
-	
-	On appelle par ailleurs instance d'un problème un cas particulier du problème.
+	\[\forall B \in \NP, B \leq_P A\]
+	 $A$ est au moins aussi difficile que tous les problèmes dans $\NP$: il existe une réduction polynomiale permettant de se ramener à un problème de $A$ pour tous problèmes de $\NP$.	On appelle par ailleurs instance d'un problème un cas particulier du problème.
 \end{defn}
 
 \begin{defn}[$\NPCOMPLETE$]
@@ -80,94 +80,88 @@ Cela revient à dire que l'on peut transformer (rapidement) tout problème de ty
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.15]{img/pvsnp.png}
-	\caption{Illustration des classes de problèmes $\PP$ et $\NP$}
+	\caption{Illustration des classes de problèmes $\PP$ et $\NP$~\cite{pnp}}
+	\label{pnp}
 \end{figure}
 
 De manière générale on s'appuie sur les réductions entre problèmes et la caractérisation par certificat de $\NP$ pour montrer qu'un problème donné est $\NPCOMPLETE$. En effet, pour démontrer qu'un problème $A$ est $\NPCOMPLETE$, il suffit de vérifier qu'il est dans $\NP$ via la caractérisation par certificat et de construire une réduction polynomiale d'un problème $B$, que l'on sait être $\NPHARD$, au problème $A$. On peut alors conclure de la façon suivante.
 
 On sait que $\forall C \in \NP, C \leq_P B$ et on a montré $B \leq_P A$, donc $\forall C \in \NP, C \leq_P A$ donc $A$ est $\NPHARD$ et si de plus il est dans $\NP$, il est $\NPCOMPLETE$.
 
-L'un des plus fameux articles sur la question est l'article publié en 1972 par Richard Karp\cite{21karp}, il propose des réductions pour 21 problèmes de $\NP$ à \textit{SAT}, montrant ainsi que ces $21$ problèmes sont non seulement tous dans $\NP$ mais aussi tous $\NPHARD$ et équivalents entre eux. On parle des $21$ problèmes $\NPCOMPLETE$ de Karp. Plus tard nous verrons une réduction de \emph{min bissection} au problème $max-cut$ qui fait partie des problèmes de Karp.
+L'un des plus fameux articles sur la question est l'article publié en 1972 par Richard Karp~\cite{21karp}, il propose des réductions pour 21 problèmes de $\NP$ à \textit{SAT}, montrant ainsi que ces $21$ problèmes sont non seulement tous dans $\NP$ mais aussi tous $\NPHARD$ et équivalents entre eux. On parle des $21$ problèmes $\NPCOMPLETE$ de Karp. Plus tard nous verrons une réduction de \emph{min bissection} au problème $max-cut$ qui fait partie des problèmes de Karp.
 
 \subsubsection{P versus NP}
 
 \textit{Digression problème du millénaire...}
 
-Une des grandes questions en informatique fondamentale est de savoir si $\PP = \NP$, si $\PP \not= \NP$ ou si ce résultat est indécidable.
+Une des grandes questions en informatique fondamentale est de savoir si $\PP = \NP$, si $\PP \not= \NP$ ou si ce résultat est indécidable\ref{pnp}.
 
-Philosophiquement, en se basant sur les définitions de ces deux classes données plus tôt, cela revient à savoir si résoudre un problème en temps polynomial c'est aussi difficile que de vérifier si une solution-candidate est effectivement une solution en temps polynomial. Une analogie, très fausse pour beaucoup de raisons, mais qui donne une bonne idée du problème philosophique est celle avec une preuve de maths.
-
-Dans ce cas la question revient à: est-il aussi facile de construire une preuve de maths que de la vérifier une fois construite ? A priori, on a envie de dire qu'il est infiniment plus compliqué de construire une preuve que de vérifier la cohérence et la justesse d'une preuve déjà construite. Néanmoins dans le cas des problèmes en question on n'a pu montrer ni que c'était strictement plus difficile ni que c'était aussi facile. De plus, pour montrer que $\PP = \NP$, il suffirait de fournir un algorithme qui tourne en temps polynomial pour l'un des problèmes $\NPCOMPLETE$, en effet puisque tous les problèmes de la classe peuvent se réduire par réduction successive à l'un de ces problèmes en temps polynomial, cet algorithme serait à même de résoudre tous les problèmes de la classe $\NP$ en temps polynomial.
+Philosophiquement, en se basant sur les définitions de ces deux classes données plus tôt, cela revient à savoir si résoudre un problème en temps polynomial c'est aussi difficile que de vérifier si une solution-candidate est effectivement une solution en temps polynomial. Une analogie, qui donne une bonne idée du problème philosophique est celle avec une preuve de maths. Dans ce cas la question revient à: est-il aussi facile de construire une preuve de maths que de la vérifier une fois construite ? A priori, on a envie de dire qu'il est infiniment plus compliqué de construire une preuve que de vérifier la justesse d'une preuve déjà construite. Néanmoins dans le cas des problèmes en question on n'a pu montrer ni que c'était strictement plus difficile ni que c'était aussi facile. De plus, pour montrer que $\PP = \NP$, il suffirait de fournir un algorithme polynomial pour l'un des problèmes $\NPCOMPLETE$, car tous les problèmes de la classe peuvent se réduire par réduction successive à l'un de ces problèmes en temps polynomial. Cet algorithme serait à même de résoudre tous les problèmes de la classe $\NP$ en temps polynomial.
  
 \subsection{Min bissection}
 
-Nous allons montrer que le problème de décision associé à \textit{min bissection} est $\NPCOMPLETE$ car le problème d'optimisation n'est a priori pas dans $\NP$.
+Nous allons travailler avec le problème de décision associé à \textit{min bissection} car le problème d'optimisation n'est a priori pas dans $\NP$ et nous montrerons que ce problème de décision est $\NPCOMPLETE$.
 
 \subsubsection{Appartenance à $\NP$}
 
-\begin{defn}[Min bissection -- Problème d'optimisation]
+\begin{defn}[\textsc{min bissect} -- Problème d'optimisation]
 	Soit $G=(V, E)$ un graphe, le problème consiste à trouver $A:B$ une bissection minimale pour $\preceq$ dans $G$.
 \end{defn}
 
 \begin{rem}
-	C'est en fait une version plus forte du problème de la coupe minimale, dans le cas de la coupe minimale on cherche uniquement une coupe et non une bissection, c'est à dire que les deux communautés n'ont pas à avoir la même taille. Il est important de noter que le problème de la coupe minimale est significativement plus facile à résoudre en terme de complexité algorithmique car il est dans $\PP$.
-	
-	La preuve s'effectue en montrant qu'il y a équivalence entre le problème de la coupe minimale et celui du flot maximum\cite{papadimitriou1982combinatorial}\footnote{Excellent ouvrage de Christos Papadimitriou, personnage très important en théorie de la complexité et de la théorie des jeux.}, et en vérifiant que ce dernier est soluble en temps polynomial par exemple avec l'algorithme de Ford-Fulkerson.
+	C'est en fait une version plus forte du problème de la coupe minimale, dans le cas de la coupe minimale on cherche uniquement une coupe et non une bissection, c'est à dire que les deux communautés n'ont pas à avoir la même taille. Il est important de noter que le problème de la coupe minimale est significativement plus facile à résoudre en terme de complexité algorithmique car il est dans $\PP$. La preuve s'effectue en montrant qu'il y a équivalence entre le problème de la coupe minimale et celui du flot maximum~\cite{papadimitriou1982combinatorial}\footnote{Excellent ouvrage de Christos Papadimitriou, personnage très important en théorie de la complexité et de la théorie des jeux.}, et en vérifiant que ce dernier est soluble en temps polynomial; par exemple avec l'algorithme de Ford-Fulkerson.
 \end{rem}
 
-Il n'est a priori pas possible de vérifier que cette bissection est effectivement la plus petite sans la comparer à toutes les bissections possibles. Donc ce problème n'est a priori pas dans $\NP$. Nous allons l'affaiblir de sorte qu'il tombe dans $NP$.
+Il n'est a priori pas possible de vérifier que cette bissection est effectivement la plus petite sans la comparer à toutes les bissections possibles. Donc ce problème pas dans $\NP$. Nous allons l'affaiblir de sorte qu'il tombe dans $NP$.
+
 \begin{defn}[Min bissection -- Problème de décision]
-	Soient $G=(V, E)$ un graphe et $K \in \N$, le problème consiste à trouver $A:B$ une bissection telle que $\card{A:B} < K$.
+	Soient $G=(V, E)$ un graphe et $K \in \N$, le problème consiste à trouver $(A:B)$ une bissection telle que $\card{A:B} < K$.
 \end{defn}
-Dans ce cas, il est facile de vérifier si l'on a une bissection-candidate $A:B$ que $\card{A:B} \leq K$. Il suffit compter le nombre d'arêtes entre les deux ensembles (ou la somme de leur capacité), dans les deux cas, cela se fait en $\Orond(N^2)$ en pire cas. Ainsi le problème de décision de la bissection minimale est  dans $\NP$.
+Dans ce cas, il est facile de vérifier si l'on a une bissection candidate $A:B$ que $\card{A:B} \leq K$. Il suffit compter le nombre d'arêtes entre les deux ensembles (ou la somme de leur capacité), dans les deux cas, cela se fait en $\Orond(N^2)$ en pire cas. Ainsi le problème de décision de la bissection minimale est  dans $\NP$.
 
 \subsubsection{$\NPHARD$}
 
-La preuve permettant de montrer que \textit{min-bissection} est $\NPHARD$ se fait grâce à 3 réductions remontant au problème \textit{3-SAT} qui est $NP-complet$ car c'est l'un des 21 problèmes de Karp \cite{21karp}. Nous allons montrer successivement:
-\[ \text{\textit{3-SAT}} \leq_P \text{\textit{MAX-2SAT}} \leq_P \text{\textit{SIMPLE-MAX-CUT}} \leq_P \text{\textit{SIMPLE-MIN-BISSECTION}} \]
+La preuve permettant de montrer que \textsc{min-bissection} est $\NPHARD$ se fait grâce à 3 réductions remontant au problème \textsc{3-sat} qui est $NP-complet$ car c'est l'un des 21 problèmes de Karp ~\cite{21karp}. Nous allons montrer successivement:
+\[ \text{3-\textsc{sat}} \leq_P \text{\textsc{max-2sat}}\leq_P \text{\textsc{simple-max-cut}} \leq_P \text{\textsc{simple-min-bissect}} \]
 
-Les deux preuves principales sont le passage de \textit{3-SAT} à \textit{MAX-2SAT} et \textit{SIMPLE-MAX-CUT} à \textit{SIMPLE-MIN-BISSECTION}, la troisième preuve est plus fastidieuse et peut être omise sans nuire à la compréhension globale, il est néanmoins détaillée dans un souci d'exhaustivité.
+Les deux preuves principales sont le passage de \textsc{3-sat} à \textsc{max-2sat} et \textsc{simple-max-cut} à \textsc{simple-min-bissect}, la troisième preuve est plus fastidieuse et peut être omise sans nuire à la compréhension globale, il est néanmoins détaillée dans un souci d'exhaustivité.
 
 \begin{rem}
-	Ici nous montrons, en fait, que le problème \textit{MIN-BISSECTION-SIMPLE}, c'est à dire restreint aux graphes non pondérés reste $\NPHARD$. En effet, il est a priori moins général que \textit{MIN-BISSECTION} ie le même problème avec des graphes pondérés. On peut montrer, qu'ils sont en fait équivalent puisque tous deux sont dans $\NPCOMPLETE$ mais la réduction pour le problème générale se fait à partir du problème \textit{MAX-CUT} dans le cas général.
+	Ici nous montrons, en fait, que le problème \textsc{simple-min-bissect}, c'est à dire restreint aux graphes non pondérés reste $\NPHARD$. En effet, il est a priori moins général que \textsc{min-bissect} ie le même problème avec des graphes pondérés. On peut montrer, qu'ils sont en fait équivalent puisque tous deux sont dans $\NPCOMPLETE$ mais la réduction pour le problème générale se fait à partir du problème \textsc{max-cut} dans le cas général.
 \end{rem}
 
-\begin{defn}[\textit{3-SAT}\cite{sat}]
-	Soient $C_1 \cdots C_p$ des clauses disjonctives contenant au plus 3 littéraux impliquant des variables $x_1 \cdots x_n$.
-	Et $\Phi(x_1 \cdots x_n) =\bigwedge_{i = 1}^p C_i$.
-	On dit que $\Phi$ est une formule \textit{3-SAT} et on cherche à décider s'il existe une affectation des variables faisant s'évaluer $\Phi$ à vrai.
+\begin{defn}[\textsc{3-sat}~\cite{sat}]
+	Soient $C_1 \cdots C_p$ des clauses disjonctives contenant au plus 3 littéraux impliquant des variables $x_1 \cdots x_n$ et $\Phi(x_1 \cdots x_n) =\bigwedge_{i = 1}^p C_i$.
+	On dit que $\Phi$ est une formule \textsc{3-sat} et on cherche à décider s'il existe une affectation des variables faisant s'évaluer $\Phi$ à vrai.
 \end{defn}
 
 \begin{rem}
-	Si on restreint encore le problème \textit{3-SAT} avec des clauses disjonctives contenant au plus deux littéraux on obtient le problème \textit{2-SAT} qui est lui dans $\PP$ \cite{sat}. Ainsi, on voit qu'une restriction en apparence minime change de manière fondamentale la classe de complexité du problème.
+	Si on restreint encore le problème \textsc{3-sat} avec des clauses disjonctives contenant au plus deux littéraux on obtient le problème \textsc{2-sat} qui est lui dans $\PP$~\cite{sat}. On voit qu'une restriction en apparence minime change de manière fondamentale la classe de complexité du problème.
 \end{rem}
 
-\begin{defn}[\textit{MAX-2SAT}]
-	Soient $C_1 \cdots C_p$ des clauses logiques disjonctives de $2$ littéraux au plus et $K\in K$ impliquant des variables $x_1 \cdots x_n$. On cherche à décider s'il existe une affectation des variables $(x_i)_i$ telle que $K$ clauses au moins s'évaluent à vrai.
+\begin{defn}[\textsc{max-2sat}]
+	Soient $C_1 \cdots C_p$ des clauses logiques disjonctives de $2$ littéraux au plus et $K\in \N$ impliquant des variables $x_1 \cdots x_n$. On cherche à décider s'il existe une affectation des variables $(x_i)_i$ telle que $K$ clauses au moins s'évaluent à vrai.
 \end{defn}
 
-\begin{defn}[\textit{SIMPLE-MAX-CUT}]
+\begin{defn}[\textsc{simple-max-cut}]
 	Soient $G=(V,E)$ et $W \in \N$ on cherche à décider s'il existe une coupe $S_1:S_2$ telle que $\card{S_1:S_2} \geq W$.	
 \end{defn}
 
-\begin{defn}[\textit{SIMPLE-MIN-BISSECTION}]
-	Soient $G=(V, E)$ et $W \in N$, on cherche à décider s'il existe une bissection $\card{A:B} \leq W$.
+\begin{defn}[\textsc{simple-min-bissect}]
+	Soient $G=(V, E)$ et $W \in \N$, on cherche à décider s'il existe une bissection $\card{A:B} \leq W$.
 \end{defn}
 
 \begin{thm}
-	 $3-SAT \leq_P MAX-2SAT$.
+	 \textsc{3-sat} $\leq_P$ \textsc{max-2sat}.
 \end{thm}
 
 \begin{proof}
-	Soit $\Irond_1$ une instance de \textit{3-SAT}. Soient $C_1, \cdots C_n$ des clauses disjonctives. On peut supposer sans perte de généralité que toutes ces clauses disjonctives de $\Irond_1$ possèdent exactement 3 littéraux: on peut en effet compléter celles qui en ont moins en ajoutant des variables pour obtenir une formule équivalente et de taille linéaire.
-	
-	On se donne $a_i, b_i, c_i$ pour $i \in [|1, n|]$ les littéraux de la clause $i$. 
+	Soit $\Irond_1$ une instance de \textsc{3-sat}. Soient $C_1, \cdots C_n$ des clauses disjonctives. On peut supposer sans perte de généralité que toutes ces clauses disjonctives de $\Irond_1$ possèdent exactement 3 littéraux: on peut en effet compléter celles qui en ont moins en ajoutant des variables pour obtenir une formule équivalente et de taille linéaire. On se donne $a_i, b_i, c_i$ pour $i \in [|1, n|]$ les littéraux de la clause $i$. 
 	
 	\begin{rem}
 		Ce ne sont pas des variables distinctes seulement des littéraux c'est à dire une variable ou sa négation. On peut très bien avoir $a_i = b_k = a_j$.
 	\end{rem}
-
-	On va construire une instance $\Irond_2$ de \textit{MAX-2SAT} en formant pour chaque clause $C_i = a_i \lor b_i \lor c_i$ les clauses:
+	On va construire une instance $\Irond_2$ de \textsc{max-2sat} en formant pour chaque clause $C_i = a_i \lor b_i \lor c_i$ les clauses:
 	\begin{enumerate}
 		\item $a_i$, $b_i$, $c_i$, $d_i$
 		\item $\neg a_i \lor \neg b_i$, $\neg a_i \lor \neg c_i$, $\neg b_i \lor \neg c_i$
@@ -178,7 +172,7 @@ Les deux preuves principales sont le passage de \textit{3-SAT} à \textit{MAX-2S
 	
 	Cette construction de $\Irond_2$ est linéaire en la taille de $\Irond_1$ et donc a fortiori polynomiale.
 	
-	Supposons qu'il existe une assignation des variables évaluant la formule \textit{3-SAT} à vrai, alors dans chaque clause, au moins un des littéraux est vrai. On va montrer que quel que soit le nombre de littéraux vrais dans une clause $C_i = a_i \lor b_i \lor c_i$ de $\Irond_1$, il existe une affectation de $d_i$ permettant de valider exactement $7$ clauses dans $\Irond_2$.
+	Supposons qu'il existe une assignation des variables évaluant la formule \textsc{3-sat} à vrai, alors dans chaque clause, au moins un des littéraux est vrai. On va montrer que quel que soit le nombre de littéraux vrais dans une clause $C_i = a_i \lor b_i \lor c_i$ de $\Irond_1$, il existe une affectation de $d_i$ permettant de valider exactement $7$ clauses dans $\Irond_2$.
 	
 	Soit $i \in [|1, n|]$, 
 		\begin{itemize}
@@ -191,21 +185,21 @@ Les deux preuves principales sont le passage de \textit{3-SAT} à \textit{MAX-2S
 	
 	Ainsi si $\Irond_1$ possède une solution alors $\Irond_2$ possède également une solution.
 	
-	On montre maintenant que si $\Irond_2$ possède une solution alors $\Irond_1$ en possède une aussi. Par contraposée, on suppose qu'il n'existe pas d'affectation évaluant la formule \textit{3-SAT} à vrai. Ainsi, il existe au moins une clause dont aucun des littéraux n'est vrai. Dans ce cas, on vérifie qu'au plus $6$ clauses (pour $d_i = \bot$) peuvent être vérifiées, ainsi il y a strictement moins de $7m$ clauses vérifiées dans $\Irond_2$.
+	On montre maintenant que si $\Irond_2$ possède une solution alors $\Irond_1$ en possède une aussi. Par contraposée, on suppose qu'il n'existe pas d'affectation évaluant la formule \textsc{3-sat} à vrai. Ainsi, il existe au moins une clause dont aucun des littéraux n'est vrai. Dans ce cas, on vérifie qu'au plus $6$ clauses (pour $d_i = \bot$) peuvent être vérifiées, ainsi il y a strictement moins de $7m$ clauses vérifiées dans $\Irond_2$.
 	
-	Ainsi $\Irond_1$ a une solution si et seulement si $\Irond_2$ a une solution. On a donc bien montré que \textit{3-SAT} se réduit à \textit{MAX-2SAT}	
+	Ainsi $\Irond_1$ a une solution si et seulement si $\Irond_2$ a une solution. On a donc bien montré que \textsc{3-sat} se réduit à \textsc{max-2sat}	
 \end{proof}
 
 \begin{thm}
-	$\textit{MAX-2SAT} \leq_\textit{P SIMPLE-MAX-CUT}$.
+	$\textsc{max-2sat} \leq_\textsc{P simple-max-cut}$.
 \end{thm}
 
 \begin{proof}
-	Soit $\Irond_1$ une instance de \textit{MAX-2SAT} nous allons construire une instance $\Irond_2$ de \textit{SIMPLE-MAX-CUT}.
+	Soit $\Irond_1$ une instance de \textsc{max-2sat} nous allons construire une instance $\Irond_2$ de \textsc{simple-max-cut}.
 	
 	Soient $C_1 \cdots C_m$ les clauses de $\Irond_1$ et $K$ le nombre de clauses à valider, on peut supposer qu'elles contiennent toutes exactement $2$ littéraux, quitte à répéter le littéral présent dans la clause, pour obtenir une formule équivalente.
 	
-	Dans ce cas pour tout $i \in [|1, m|]$ on note $C_i = a_i \cup b_i$. On note $x_1 \cdots x_n$ les variables (et leur négation) impliquées dans les clauses de $\Irond_1$. On construit alors un graphe  $G=(V,E)$ de \textit{SIMPLE-MAX-CUT}.
+	Dans ce cas pour tout $i \in [|1, m|]$ on note $C_i = a_i \cup b_i$. On note $x_1 \cdots x_n$ les variables (et leur négation) impliquées dans les clauses de $\Irond_1$. On construit alors un graphe  $G=(V,E)$ de \textsc{simple-max-cut}.
 	
 	On forme $V$ les sommets du graphe de la façon suivante:
 	\begin{align*}
@@ -229,7 +223,7 @@ Les deux preuves principales sont le passage de \textit{3-SAT} à \textit{MAX-2S
 	De plus, si on a $F_i, F_j$, $i \not= j$ dans deux ensembles différents alors on a au moins $3m+1$ arêtes de $A_1$ qui seront mauvaises (ie avec une extrémité dans un ensemble de la partition et l'autre dans l'autre) puisque ces deux sommets ont en commun $3p+1$ voisins communs. De même, on a que si $x_i, \bar{x_i}$  sont dans le même ensemble, alors de la partition au moins $3m+1$ arêtes de $A_1$ seront mauvaises car il y a $3m+1$ chemin (disjoints) de longueur 3 de $x_i$ à $\bar{x_i}$.
 	
 	
-	On construit ainsi $G=(V, E=A_1 \cup A_2)$ et $W = \card{A_1} + 2K$ une instance $\Irond_2$ de \textit{SIMPLE-MAX-CUT}.
+	On construit ainsi $G=(V, E=A_1 \cup A_2)$ et $W = \card{A_1} + 2K$ une instance $\Irond_2$ de \textsc{simple-max-cut}.
 	
 	On suppose que $\Irond_1$ possède une solution, c'est à dire un assignement des variables $x_1 \cdots x_n$ rendant au moins $K$ clauses vraies.
 	
@@ -257,11 +251,11 @@ Les deux preuves principales sont le passage de \textit{3-SAT} à \textit{MAX-2S
 	\end{exercice}
 \end{proof}
 \begin{thm}
-	$\textit{SIMPLE-MAX-CUT} \leq_P \textit{SIMPLE-MIN-BISSECTION}$
+	$\textsc{simple-max-cut} \leq_P \textsc{simple-min-bissect}$
 \end{thm}
 
 \begin{proof}
-Soit $\Irond_1$ une instance du problème \textit{SIMPLE-MAX-CUT}, soit $G=(V,E)$ et $W \in \N^*$. On va construire une instance $\Irond_2$ de \textit{MIN-BISSECTION}, on note $N = \card{V}$.
+Soit $\Irond_1$ une instance du problème \textsc{simple-max-cut}, soit $G=(V,E)$ et $W \in \N^*$. On va construire une instance $\Irond_2$ de \textsc{MIN-BISSECTION}, on note $N = \card{V}$.
 
 On construit $V' = V \cup \set{U_1 \cdots U_N}$ avec $\set{U_1 \cdots U_N} \cap V = \emptyset$. On double en fait le nombre de sommets par rapport au graphe initial pour garantir que l'on ait un nombre pair de sommets et pour ainsi pouvoir former la partition en ensembles de tailles égales.
 
@@ -286,7 +280,7 @@ En effet:
 \end{align*}
 Ainsi si $\Irond_2$ a une solution alors $\Irond_1$ a une solution.
 
-De plus la construction présentée est polynomiale en la taille du problème, donc c'est une réduction polynomiale. On conclut donc que tout problème de \textit{SIMPLE-MAX-CUT} peut être transformé en un problème équivalent de \textit{SIMPLE-MIN-BISSECTION} qui est donc $\NPHARD$. 
+De plus la construction présentée est polynomiale en la taille du problème, donc c'est une réduction polynomiale. On conclut donc que tout problème de \textsc{simple-max-cut} peut être transformé en un problème équivalent de \textsc{simple-min-bissect} qui est donc $\NPHARD$. 
 \end{proof}
 
 On a alors montré que le problème de décision de la bissection minimale était bien $\NP$ et $\NPHARD$, il est donc bien $\NPCOMPLETE$.
